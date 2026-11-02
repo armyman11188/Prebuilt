@@ -1,0 +1,8 @@
+# ROMAN URDU: Yeh file batati hai ke agar kabhi is project ko Git/GitHub
+# pe upload karo, to yeh cheezein IGNORE (skip) kar do — kyunke yeh ya to
+# secret hain (.env) ya khud-ba-khud dobara ban sakti hain (node_modules).
+
+.env
+node_modules/
+build/
+firebase-service-account.json

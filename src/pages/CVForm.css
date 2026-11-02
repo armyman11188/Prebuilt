@@ -1,0 +1,610 @@
+/* ============================================================================
+   src/pages/CVForm.css
+   ============================================================================ */
+
+.cv-form-page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(#c7d7f5 1px, transparent 1px),
+    linear-gradient(180deg, #f0f5ff 0%, var(--bg-light) 100%);
+  background-size: 26px 26px, 100% 100%;
+  background-attachment: fixed, scroll;
+}
+/* ROMAN URDU: Homepage jaisi halki blurred blobs, taake white area
+   bilkul "flat/basic" na lage — poori site ka ek consistent feel bane */
+.cv-form-page::before,
+.cv-form-page::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 0;
+}
+.cv-form-page::before {
+  width: 480px; height: 480px;
+  background: #93c5fd;
+  top: 100px; right: -180px;
+}
+.cv-form-page::after {
+  width: 440px; height: 440px;
+  background: #c4b5fd;
+  bottom: 60px; left: -180px;
+}
+.cv-form-header,
+.cv-form-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Blue header banner, jaisa screenshot ke upar tha */
+.cv-form-header {
+  /* ROMAN URDU: Deep, rich solid-ish blue (halka gradient) — reference
+     jaisa "confident" dark blue, harsh bright blue nahi */
+  background: linear-gradient(160deg, #1c4a95 0%, #143a7a 100%);
+  color: white;
+  padding: 26px 24px 44px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ROMAN URDU: Yeh "circle texture" trick hai — background-image mein
+   ek sath 6 alag radial-gradient circles daal diye, har ek apni jagah,
+   size, aur opacity ke sath. Koi image file nahi chahiye, sab CSS se. */
+.cv-form-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 12% 20%, rgba(255,255,255,0.07) 0, rgba(255,255,255,0.07) 70px, transparent 71px),
+    radial-gradient(circle at 85% 15%, rgba(255,255,255,0.06) 0, rgba(255,255,255,0.06) 100px, transparent 101px),
+    radial-gradient(circle at 70% 75%, rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 130px, transparent 131px),
+    radial-gradient(circle at 25% 85%, rgba(255,255,255,0.06) 0, rgba(255,255,255,0.06) 90px, transparent 91px),
+    radial-gradient(circle at 95% 60%, rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 60px, transparent 61px);
+  pointer-events: none;
+}
+
+.cv-form-header > * {
+  position: relative; /* circle texture ke UPAR rahein */
+  z-index: 2;
+}
+
+.back-home-link {
+  display: inline-block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #dbeafe;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 7px 14px;
+  border-radius: 999px;
+  margin-bottom: 22px;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.back-home-link:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateX(-2px);
+}
+
+.header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fde68a;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 7px 16px;
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+
+/* ROMAN URDU: "serif" font family reference screenshot jaisa look deta
+   hai — normal sans-serif se zyada "editorial/premium" feel. Yeh sab
+   system fonts hain (Georgia wagera), koi extra download nahi chahiye. */
+.cv-form-header h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.header-gradient {
+  background: linear-gradient(90deg, #93c5fd, #fde68a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.cv-form-header p {
+  margin-top: 12px;
+  color: #cfe0ff;
+  font-size: 14.5px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-pills {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+.header-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e5edff;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 999px;
+}
+.header-pill-check {
+  color: #4ade80;
+}
+
+.cv-form-container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+/* ---------- CARDS ---------- */
+.card {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid #eef2f7;
+  border-top: 3px solid var(--primary); /* default fallback */
+  padding: 24px;
+  margin-bottom: 20px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.card:hover {
+  box-shadow: 0 14px 36px rgba(37, 99, 235, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ROMAN URDU: Har accent color ke 2 kaam hain — card ki upar wali line,
+   aur uske andar wale icon-badge ka background. Isay "theming with
+   modifier classes" kehte hain — same Card component, bas class badal
+   kar poori tarah color scheme badal jaata hai. */
+.card-accent-blue { border-top-color: var(--primary); }
+.card-accent-blue .card-icon { background: linear-gradient(135deg, #eef2ff, #dbeafe); }
+
+.card-accent-purple { border-top-color: #8b5cf6; }
+.card-accent-purple .card-icon { background: linear-gradient(135deg, #f5f3ff, #ede9fe); }
+
+.card-accent-teal { border-top-color: #14b8a6; }
+.card-accent-teal .card-icon { background: linear-gradient(135deg, #f0fdfa, #ccfbf1); }
+
+.card-title {
+  font-size: 15.5px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-dark);
+}
+.card-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+/* ---------- FIELD GRID ----------
+   2 columns on desktop; "field-full" makes one field span both columns
+   (jaise LinkedIn/Address jinko poori width chahiye) */
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.field-full {
+  grid-column: 1 / -1; /* "column 1 se lekar bilkul aakhir tak" phaila do */
+}
+
+.field-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-dark);
+}
+.required-star {
+  color: var(--primary);
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d8dfe8;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.input:hover {
+  border-color: #b7c3d6;
+}
+.input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* ---------- ENTRY BOXES (Work Experience, Education, Extra Sections) ----------
+   ROMAN URDU: Har entry (ek job, ek degree) ek halke bordered box mein hai,
+   taake visually alag dikhein jab multiple ho. */
+.entry-box {
+  position: relative;
+  border: 1px solid #eef2f7;
+  background: var(--bg-light);
+  border-radius: 10px;
+  padding: 18px 18px 16px;
+  margin-bottom: 14px;
+}
+.entry-remove {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fef2f2;
+  color: #dc2626;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  font-size: 12px;
+}
+.section-remove {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 7px 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  float: right;
+  border: 1px solid #fecaca;
+}
+
+.textarea {
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.current-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 7px;
+}
+
+/* ---------- SKILL TAGS (chips) ---------- */
+.skill-group {
+  margin-bottom: 18px;
+}
+.skill-group:last-child {
+  margin-bottom: 0;
+}
+.skill-input-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+.skill-input-row .input {
+  flex: 1;
+}
+.skill-add-btn {
+  background: var(--primary);
+  color: white;
+  padding: 0 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13.5px;
+  flex-shrink: 0;
+}
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #eef2ff;
+  color: var(--primary-dark);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 8px 6px 12px;
+  border-radius: 999px;
+}
+.skill-chip button {
+  background: rgba(37, 99, 235, 0.15);
+  color: var(--primary-dark);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- "ADD NEW SECTION" BUTTON (opens modal) ---------- */
+.add-section-btn {
+  width: 100%;
+  background: white;
+  border: 2px dashed var(--primary);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 16px;
+  border-radius: 12px;
+  transition: background 0.15s ease;
+}
+.add-section-btn:hover {
+  background: #eef2ff;
+}
+
+/* ---------- AI RESULTS (Step 3) ---------- */
+.error-box {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+.btn-generate {
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  font-weight: 700;
+  padding: 13px;
+  border-radius: 10px;
+  font-size: 15px;
+  margin-top: 6px;
+}
+.btn-generate:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.bullet-list {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.bullet-list li {
+  font-size: 14px;
+  line-height: 1.55;
+}
+.cover-letter-preview {
+  font-size: 13.5px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  background: var(--bg-light);
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+.language-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.language-row .input {
+  flex: 1; /* language name box baaki jagah le le */
+}
+.lang-select {
+  flex: 0 0 130px; /* fix width, na barhe na ghate */
+}
+.mother-tongue-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.remove-btn {
+  background: #fef2f2;
+  color: #dc2626;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.add-btn {
+  background: var(--bg-light);
+  border: 1.5px dashed #cbd5e1;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 9px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+/* ---------- NAVIGATION BUTTONS ---------- */
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+.btn-back,
+.btn-next {
+  padding: 11px 24px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-back {
+  background: white;
+  border: 1.5px solid #d8dfe8;
+  color: var(--text-dark);
+}
+.btn-back:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.btn-next {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+.btn-next:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+}
+.btn-back:disabled,
+.btn-next:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (max-width: 560px) {
+  .field-grid {
+    grid-template-columns: 1fr; /* mobile pe ek hi column */
+  }
+}
+
+/* ============================================================================
+   REDESIGN — single page, dropdown (accordion) sections, "CV Pro" look
+   ROMAN URDU: Yeh block file ke AKHIR mein hai, isliye upar wali purani
+   styles ko override karta hai. Purani header/step styles ab use nahi hoti.
+   ============================================================================ */
+.cv-form-page {
+  background: linear-gradient(180deg, #eaf2ff 0%, #f6f9ff 280px, #ffffff 100%);
+  background-attachment: scroll;
+  font-family: Inter, "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+.cv-form-page::before, .cv-form-page::after { display: none; }
+
+/* header */
+.cvf-top, .cvf-intro { max-width: 760px; margin: 0 auto; padding-left: 20px; padding-right: 20px; position: relative; z-index: 1; }
+.cvf-top { padding-top: 20px; }
+.cvf-brand { display: inline-flex; align-items: center; gap: 10px; color: #0f172a; text-decoration: none; }
+.cvf-brand svg { font-size: 36px; color: #2563eb; }
+.cvf-brand b { display: block; font-size: 24px; line-height: 1; font-weight: 800; }
+.cvf-brand small { font-size: 10.5px; color: #475569; }
+.cvf-intro { padding-top: 26px; padding-bottom: 18px; }
+.cvf-back { display: inline-flex; align-items: center; gap: 8px; padding: 9px 20px; border: 1.5px solid #bfd2fb; border-radius: 999px; background: #fff; color: #1d4ed8; font-weight: 700; font-size: 14.5px; text-decoration: none; }
+.cvf-back:hover { background: #eff6ff; }
+.cvf-intro h1 { font-size: 44px; line-height: 1.1; font-weight: 800; letter-spacing: -.02em; color: #0f172a; margin: 22px 0 8px; font-family: inherit; }
+.cvf-intro h1 span { color: #2563eb; }
+.cvf-intro p { font-size: 17px; color: #475569; margin: 0; max-width: 560px; line-height: 1.5; }
+
+.cv-form-container { max-width: 760px; padding-top: 6px; }
+
+/* accordion cards */
+.card:hover { transform: none; }
+.card.acc {
+  padding: 0; overflow: hidden; border: 1px solid #e3ebf8; border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, .07); margin-bottom: 16px;
+}
+.card.acc:hover { box-shadow: 0 12px 32px rgba(37, 99, 235, .12); }
+.acc-head { display: flex; align-items: center; gap: 16px; padding: 18px 22px; cursor: pointer; user-select: none; }
+.acc-head:focus-visible { outline: 3px solid #93c5fd; outline-offset: -3px; border-radius: 20px; }
+.acc-icon { width: 46px; height: 46px; border-radius: 14px; background: #eff6ff; color: #1d4ed8; display: grid; place-items: center; flex: none; }
+.acc-icon svg { width: 24px; height: 24px; }
+.acc-text { flex: 1; min-width: 0; }
+.acc-text b { display: block; font-size: 19px; font-weight: 700; color: #0f172a; }
+.acc-text small { display: block; margin-top: 2px; font-size: 14px; color: #64748b; }
+.acc-action { flex: none; padding: 9px 18px; border: 1.5px solid #bfd2fb; border-radius: 999px; background: #eef4ff; color: #1d4ed8; font-weight: 600; font-size: 14px; }
+.acc-action:hover { background: #dbeafe; }
+.acc-chevron { flex: none; width: 22px; height: 22px; color: #2563eb; transform: rotate(-90deg); transition: transform .2s ease; }
+.acc-open .acc-chevron { transform: rotate(180deg); }
+.acc-body { padding: 6px 22px 24px; border-top: 1px solid #eef2f7; }
+.acc-open > .acc-head { padding-bottom: 14px; }
+
+/* inputs */
+.cv-form-page .input { border: 1.5px solid #c7d7f5; border-radius: 12px; padding: 12px 14px; background: #fff; font-size: 15px; }
+.cv-form-page .input:focus { border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37, 99, 235, .12); }
+.field-label { font-weight: 700; font-size: 14px; }
+.entry-box { border-radius: 14px; background: #f8fbff; border-color: #e3ebf8; }
+
+/* bottom actions */
+.cvf-actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin: 26px 0 8px; }
+.cvf-reset, .cvf-preview-btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 28px; border-radius: 999px; font-weight: 700; font-size: 16px; font-family: inherit; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
+.cvf-reset { background: #fff; color: #1d4ed8; border: 2px solid #2563eb; }
+.cvf-reset:hover { background: #eff6ff; }
+.cvf-preview-btn { background: #2563eb; color: #fff; border: 0; box-shadow: 0 10px 24px rgba(37, 99, 235, .3); }
+.cvf-preview-btn:hover { transform: translateY(-2px); }
+
+@media (max-width: 560px) {
+  .cvf-intro h1 { font-size: 34px; }
+  .acc-head { flex-wrap: wrap; padding: 16px; }
+  .acc-text { flex-basis: calc(100% - 120px); }
+  .acc-action { order: 5; margin-left: 62px; }
+  .acc-body { padding: 4px 16px 20px; }
+  .cvf-actions > button { flex: 1 1 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) { .acc-chevron { transition: none; } }
+
+/* ---------- saved CV strip + application history ---------- */
+.cvf-saved { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding: 14px 18px; margin-bottom: 16px; border: 1px solid #bfdbfe; border-radius: 16px; background: #eff6ff; font-size: 14.5px; color: #1e3a8a; line-height: 1.45; }
+.cvf-saved b { color: #1d4ed8; }
+.cvf-saved button { padding: 10px 18px; border: 0; border-radius: 999px; background: #2563eb; color: #fff; font-weight: 700; font-size: 14px; font-family: inherit; cursor: pointer; }
+.cvf-saved button:hover { background: #1d4ed8; }
+.cvf-history { margin-bottom: 16px; padding: 12px 14px; border: 1px solid #e3ebf8; border-radius: 14px; background: #f8fbff; }
+.cvf-history-title { font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+.cvf-history-row { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-top: 1px solid #eef2f7; }
+.cvf-history-row:first-of-type { border-top: 0; }
+.cvf-history-row > span { flex: 1; min-width: 0; }
+.cvf-history-row b { display: block; font-size: 14px; }
+.cvf-history-row small { color: #64748b; font-size: 12.5px; }
+.cvf-history-row button { padding: 7px 14px; border: 1.5px solid #bfd2fb; border-radius: 999px; background: #fff; color: #1d4ed8; font-weight: 600; font-size: 13px; font-family: inherit; cursor: pointer; }
+.cvf-history-row button.del { padding: 7px 10px; border-color: #fecaca; color: #dc2626; }
+
+/* ---------- "tailored — view result" notice ---------- */
+.cvf-done { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding: 14px 18px; margin-bottom: 16px; border: 1px solid #a7f3d0; border-radius: 16px; background: #ecfdf5; color: #065f46; font-size: 14.5px; line-height: 1.45; }
+.cvf-done button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border: 0; border-radius: 999px; background: #059669; color: #fff; font-weight: 700; font-size: 14px; font-family: inherit; cursor: pointer; }
+.cvf-done button:hover { background: #047857; }
+
+/* ---------- account chip + save status (top right) ---------- */
+.cvf-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.cvf-account { display: flex; align-items: center; gap: 10px; min-width: 0; font-size: 14px; color: #334155; flex-wrap: wrap; justify-content: flex-end; }
+.cvf-email { max-width: 190px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cvf-sync { font-size: 13px; font-weight: 600; }
+.cvf-sync-saving { color: #64748b; } .cvf-sync-saved { color: #047857; } .cvf-sync-error { color: #b91c1c; }
+.cvf-account button { padding: 8px 16px; border: 1.5px solid #bfd2fb; border-radius: 999px; background: #fff; color: #1d4ed8; font-weight: 600; font-size: 13.5px; font-family: inherit; cursor: pointer; flex: none; }
+.cvf-account button:hover { background: #eff6ff; }
+@media (max-width: 560px) { .cvf-email { display: none; } }
+
+/* ---- added: date dropdown rows, date errors, profile link, disabled save ---- */
+.date-row { display: flex; gap: 8px; }
+.date-row .input { flex: 1; min-width: 0; width: auto; }
+.date-error { margin: 6px 0 0; color: #b91c1c; font-size: 13px; font-weight: 600; }
+.cvf-profile-link { font-weight: 600; font-size: 13.5px; color: #1d4ed8; text-decoration: none; padding: 8px 14px; border-radius: 999px; background: #eff6ff; }
+.cvf-profile-link:hover { background: #dbeafe; }
+.cvf-preview-btn:disabled { opacity: .6; cursor: default; transform: none; }

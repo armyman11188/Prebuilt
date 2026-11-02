@@ -1,0 +1,31 @@
+/* ============================================================================
+   src/index.css
+
+   ROMAN URDU EXPLANATION:
+   Yeh POORI website ke liye common cheezein define karti hai — jaise
+   colors. ":root { --primary: #2563eb; }" ka matlab hai "--primary naam
+   ka ek constant bana do jiski value blue color hai." Phir kahin bhi
+   var(--primary) likh kar wahi blue color use kar sakte hain — agar kabhi
+   color change karna ho, sirf YAHAN ek jagah change karo, poori website
+   mein khud badal jayega.
+   ============================================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --text-dark: #0f172a;
+  --text-muted: #64748b;
+  --bg-light: #f8fafc;
+  --radius: 12px;
+}
+
+body {
+  font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text-dark);
+}

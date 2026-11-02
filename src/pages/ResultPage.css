@@ -1,0 +1,99 @@
+/* src/pages/ResultPage.css (nayi file) */
+.rp-page { min-height: 100vh; background: linear-gradient(180deg, #eaf2ff 0%, #f6f9ff 320px, #f8fafc 100%); font-family: Inter, "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; color: #0f172a; padding-bottom: 60px; }
+.rp-page a { text-decoration: none; }
+.rp-page :focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
+
+.rp-top { max-width: 1480px; margin: 0 auto; padding: 20px 24px 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.rp-brand { display: inline-flex; align-items: center; gap: 10px; color: #0f172a; }
+.rp-brand svg { font-size: 36px; color: #2563eb; }
+.rp-brand b { display: block; font-size: 24px; line-height: 1; font-weight: 800; }
+.rp-brand small { font-size: 10.5px; color: #475569; }
+.rp-back { display: inline-flex; align-items: center; gap: 8px; padding: 9px 20px; border: 1.5px solid #bfd2fb; border-radius: 999px; background: #fff; color: #1d4ed8; font-weight: 700; font-size: 14.5px; }
+.rp-back:hover { background: #eff6ff; }
+.rp-title { max-width: 1480px; margin: 0 auto; padding: 26px 24px 22px; }
+.rp-title h1 { margin: 0 0 6px; font-size: 40px; line-height: 1.1; font-weight: 800; letter-spacing: -.02em; }
+.rp-title h1 span { color: #2563eb; }
+.rp-title p { margin: 0; color: #475569; font-size: 16px; }
+
+/* 3 columns: left ATS | centered CV | empty mirror (CV page ke beech mein rahe) */
+.rp-grid { max-width: 1480px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 780px) minmax(0, 1fr); gap: 28px; align-items: start; }
+.rp-left { display: flex; justify-content: flex-end; position: sticky; top: 20px; align-self: start; }
+
+/* ATS card — chhota, upar se beech tak */
+.rp-ats { width: 100%; max-width: 270px; background: #fff; border: 1px solid #e3ebf8; border-radius: 20px; padding: 20px; box-shadow: 0 12px 32px rgba(37, 99, 235, .09); display: flex; flex-direction: column; align-items: center; text-align: center; }
+.rp-ats-head { display: flex; align-items: center; gap: 8px; align-self: flex-start; font-weight: 800; font-size: 16px; color: #1e3a8a; }
+.rp-ats-head svg { color: #2563eb; }
+.rp-gauge { margin: 6px 0 0; transform: scale(.82); transform-origin: top center; height: 150px; }
+.rp-verdict { font-weight: 800; font-size: 17px; margin-top: 2px; }
+.rp-ats-sub { color: #64748b; font-size: 13px; margin: 4px 0 12px; line-height: 1.4; }
+.rp-checks { list-style: none; padding: 0; margin: 0 0 12px; width: 100%; display: grid; gap: 7px; text-align: left; }
+.rp-checks li { display: flex; align-items: center; gap: 8px; font-size: 13.5px; }
+.rp-checks li.ok svg { color: #16a34a; } .rp-checks li.bad svg { color: #dc2626; }
+.rp-missing { width: 100%; text-align: left; margin-bottom: 12px; }
+.rp-missing-title { font-size: 12.5px; font-weight: 700; color: #64748b; margin-bottom: 6px; }
+.rp-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.rp-chips span { padding: 4px 10px; border-radius: 999px; background: #fee2e2; color: #b91c1c; font-size: 12px; font-weight: 600; }
+.rp-ats-empty { align-items: flex-start; text-align: left; gap: 10px; }
+.rp-ats-empty p { margin: 0; color: #475569; font-size: 14px; line-height: 1.5; }
+
+/* CV paper */
+.rp-paper { background: #fff; border-radius: 6px; box-shadow: 0 20px 50px rgba(30, 64, 175, .14), 0 2px 6px rgba(15, 23, 42, .06); }
+.rp-paper .europass-mini-preview { border: 0; border-radius: 6px; }
+
+/* buttons */
+.rp-btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 13px 22px; border-radius: 12px; font-weight: 700; font-size: 15px; font-family: inherit; cursor: pointer; border: 1.5px solid transparent; transition: transform .15s, box-shadow .15s, background .15s; }
+.rp-btn:hover:not(:disabled) { transform: translateY(-2px); }
+.rp-btn:disabled { opacity: .6; cursor: default; }
+.rp-btn-primary { background: #2563eb; color: #fff; box-shadow: 0 10px 22px rgba(37, 99, 235, .28); }
+.rp-btn-outline { background: #fff; color: #1d4ed8; border-color: #bfd2fb; }
+.rp-btn-outline:hover:not(:disabled) { background: #eff6ff; }
+.rp-btn-ghost { background: transparent; color: #334155; border-color: #cbd5e1; }
+.rp-btn-soft { background: #eff6ff; color: #1d4ed8; width: 100%; padding: 11px 16px; font-size: 14px; }
+.rp-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0 34px; }
+.rp-actions .rp-btn-primary { flex: 1 1 220px; }
+
+/* cover letter */
+.rp-letter { background: #fff; border: 1px solid #e3ebf8; border-radius: 22px; padding: 26px; box-shadow: 0 12px 32px rgba(37, 99, 235, .08); }
+.rp-letter-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.rp-letter-top h2 { margin: 0 0 4px; font-size: 24px; font-weight: 800; }
+.rp-letter-top p { margin: 0; color: #64748b; font-size: 14.5px; }
+.rp-letter-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.rp-letter-actions .rp-btn { padding: 10px 16px; font-size: 14px; }
+.rp-letter-paper { background: #fff; border: 1px solid #e2e8f0; border-top: 6px solid #1e3a8a; border-radius: 6px; padding: 44px 52px; box-shadow: 0 10px 30px rgba(15, 23, 42, .08); font-family: Georgia, "Times New Roman", serif; color: #1e293b; }
+.rp-letter-head { padding-bottom: 16px; margin-bottom: 26px; border-bottom: 2px solid #dbeafe; }
+.rp-letter-head h3 { margin: 0; font-size: 30px; font-weight: 700; color: #0f2a5c; letter-spacing: -.01em; }
+.rp-letter-role { margin-top: 4px; font-family: Inter, "Segoe UI", system-ui, sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #2563eb; }
+.rp-letter-contact { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 12px; font-family: Inter, "Segoe UI", system-ui, sans-serif; font-size: 13px; color: #475569; }
+.rp-letter-contact span { display: inline-flex; align-items: center; gap: 6px; }
+.rp-letter-contact svg { color: #2563eb; }
+.rp-letter-date { font-size: 15px; color: #475569; margin-bottom: 18px; }
+.rp-letter-to { font-size: 15.5px; line-height: 1.5; margin-bottom: 18px; }
+.rp-letter-to b { font-weight: 700; }
+.rp-letter-subject { font-size: 15.5px; font-weight: 700; margin-bottom: 20px; }
+.rp-letter-subject span { color: #2563eb; }
+.rp-letter-greet { margin: 0 0 14px; font-size: 16px; }
+.rp-letter-p { margin: 0 0 14px; font-size: 16px; line-height: 1.75; text-align: justify; hyphens: auto; }
+.rp-letter-close { margin-top: 26px; font-size: 16px; line-height: 1.6; }
+.rp-letter-sign { margin-top: 26px; font-weight: 700; color: #0f2a5c; }
+.rp-letter-empty { padding: 26px; border: 2px dashed #bfd2fb; border-radius: 16px; background: #f8fbff; text-align: center; color: #475569; }
+.rp-letter-empty p { margin: 0 0 14px; line-height: 1.55; }
+
+/* responsive */
+@media (max-width: 1300px) {
+  .rp-grid { grid-template-columns: minmax(0, 1fr); max-width: 860px; }
+  .rp-right { display: none; }
+  .rp-left { position: static; justify-content: center; }
+  .rp-ats { max-width: none; }
+}
+@media (max-width: 640px) {
+  .rp-title h1 { font-size: 32px; }
+  .rp-letter { padding: 18px; }
+  .rp-letter-paper { padding: 26px 20px; }
+  .rp-letter-head h3 { font-size: 24px; }
+  .rp-letter-p { text-align: left; }
+  .rp-actions .rp-btn { flex: 1 1 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .rp-btn { transition: none; } }
+
+/* chhoti screen par language table scroll ho sake */
+.rp-paper { overflow-x: auto; }

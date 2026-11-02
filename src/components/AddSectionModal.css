@@ -1,0 +1,111 @@
+/* ============================================================================
+   src/components/AddSectionModal.css
+   ============================================================================ */
+
+.modal-backdrop {
+  position: fixed; /* poori screen ke UPAR, page scroll karne se yeh nahi hilega */
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100; /* sab kuch ke UPAR dikhna chahiye */
+  padding: 20px;
+  animation: fadeBackdrop 0.15s ease;
+}
+@keyframes fadeBackdrop {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal-card {
+  background: white;
+  border-radius: 16px;
+  padding: 26px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+  animation: popIn 0.18s ease;
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.modal-header h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+.modal-close {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--bg-light);
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.modal-close:hover {
+  background: #e2e8f0;
+}
+
+.modal-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+.modal-select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1.5px solid var(--primary);
+  border-radius: 9px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text-dark);
+}
+.modal-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+}
+.modal-btn-cancel {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1.5px solid #d8dfe8;
+  background: white;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 13.5px;
+}
+.modal-btn-cancel:hover {
+  border-color: #b7c3d6;
+}
+.modal-btn-add {
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  font-weight: 600;
+  font-size: 13.5px;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+}
+.modal-btn-add:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}

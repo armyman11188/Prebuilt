@@ -1,0 +1,106 @@
+/* ============================================================================
+   src/components/ResumePreview.css
+   ROMAN URDU: Yeh classes seedha tumhare diye hue reference CSS se li gayi
+   hain (emp-header, emp-name, emp-section, wagera) — sirf "var(--font-
+   display)" jaisi cheezein apne project ke variables se badli hain,
+   kyunke woh humare index.css mein defined nahi thin.
+   ============================================================================ */
+
+.europass-mini-preview {
+  background: #fff;
+  border: 2px solid #c5ddf0;
+  border-radius: 14px;
+  overflow: hidden;
+  font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.emp-header {
+  background: linear-gradient(90deg, #00467f 0%, #0072b2 70%, #0090d0 100%);
+  padding: 18px 22px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.emp-name { font-size: 1.3rem; font-weight: 800; color: white; margin-bottom: 4px; }
+.emp-title { font-size: 0.88rem; color: rgba(255,255,255,.75); }
+.emp-wordmark { font-size: 0.72rem; color: rgba(255,255,255,.55); font-style: italic; margin-top: 4px; }
+.emp-logo { text-align: right; }
+.emp-stars { color: #fcd34d; font-size: 0.85rem; letter-spacing: 2px; }
+.emp-brand { color: white; font-size: 1rem; font-weight: 700; font-style: italic; }
+
+.emp-info-row {
+  background: #dcebf8; padding: 8px 22px; display: flex; flex-wrap: wrap; gap: 16px;
+  font-size: 0.82rem; color: #1a3a5a;
+}
+.emp-info-row b { color: #00467f; }
+
+.emp-contact {
+  padding: 8px 22px; display: flex; flex-wrap: wrap; gap: 16px;
+  font-size: 0.82rem; color: #3a5a7a; border-bottom: 1px solid #dde4ed;
+}
+.emp-contact span { display: flex; align-items: center; gap: 5px; }
+
+/* ROMAN URDU: "stacked" version — har contact detail apni ALAG line pe,
+   PDF jaisa (upar wala ".emp-contact" ek hi line mein sab dikhata tha) */
+.emp-contact-stacked {
+  flex-direction: column;
+  gap: 5px;
+}
+
+.emp-section { padding: 12px 22px; border-bottom: 1px solid #edf2f7; }
+.emp-section:last-child { border-bottom: none; }
+.emp-section-title {
+  font-size: 0.72rem; font-weight: 800; color: #0072b2; letter-spacing: .08em;
+  margin-bottom: 8px; text-transform: uppercase;
+}
+.emp-summary { font-size: 0.84rem; color: #4a5a6a; line-height: 1.6; }
+.emp-job-title { font-size: 0.92rem; font-weight: 700; color: #0072b2; }
+.emp-job-company { font-size: 0.8rem; color: #6a7a8a; margin-bottom: 4px; }
+
+.emp-langs { display: flex; flex-wrap: wrap; gap: 8px; }
+.emp-lang-chip {
+  background: #e8f4fb; border: 1px solid #c5ddf0; color: #0072b2;
+  font-size: 0.78rem; font-weight: 600; padding: 4px 12px; border-radius: 20px;
+}
+.emp-lang-chip.native {
+  background: #d1fae5; border-color: #6ee7b7; color: #065f46;
+}
+
+/* ---------- LANGUAGE TABLE (5 CEFR columns, jaisa asal Europass) ---------- */
+.emp-lang-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+.emp-lang-table th {
+  text-align: left;
+  font-weight: 700;
+  color: #0f172a;
+  padding: 4px 8px 6px 0;
+  border-bottom: 1.5px solid #dde4ed;
+}
+.emp-lang-table td {
+  padding: 6px 8px 6px 0;
+  color: #4a5a6a;
+  border-bottom: 1px solid #edf2f7;
+}
+.mt-badge {
+  color: #16a34a;
+  font-size: 0.72rem;
+  font-style: italic;
+}
+.emp-levels-note {
+  font-size: 0.68rem;
+  color: #94a3b8;
+  font-style: italic;
+  margin-top: 8px;
+}
+
+/* ---------- FOOTER ---------- */
+.emp-footer {
+  padding: 10px 22px;
+  text-align: center;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  border-top: 1px solid #edf2f7;
+}
