@@ -1,6 +1,7 @@
 // ============================================================================
 // src/utils/cvStore.js  (NEW) — one place for saving / loading the CV
 // ============================================================================
+const API_URL = "https://cvforjob.org";
 const LOCAL_KEYS = [
   "cvFormDraft", "cvTailoredHistory", "voiceInterviewData",
   "atsCheckData", "atsMissingItems", "cvDraftOwner",
@@ -50,14 +51,17 @@ export function writeHistory(h) {
 }
 
 export async function fetchCv() {
-  const res = await fetch("/api/cv");
+  const res = await fetch(`${API_URL}/api/cv`, {
+  credentials: "include",
+});
   if (!res.ok) { const e = new Error("load failed"); e.status = res.status; throw e; }
   return res.json(); // { draft, history }
 }
 
 export async function saveCv(draft, history) {
-  const res = await fetch("/api/cv", {
-    method: "PUT",
+const res = await fetch(`${API_URL}/api/cv`, {
+  method: "PUT",
+  credentials: "include",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ draft, history: history || [] }),
   });

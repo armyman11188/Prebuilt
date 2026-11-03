@@ -2,6 +2,7 @@
   "name": "cv-bilder",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://armyman11188.github.io/Prebuilt",
   "proxy": "http://localhost:3001",
   "dependencies": {
     "bcryptjs": "^3.0.3",
@@ -26,13 +27,16 @@
     "react-scripts": "5.0.1"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "gh-pages": "^6.3.0"
   },
   "scripts": {
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "client": "react-scripts start",
     "server": "node server.js",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [

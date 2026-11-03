@@ -141,7 +141,8 @@ export default function ResultPage() {
     try {
       let history = [];
       try { history = JSON.parse(localStorage.getItem("cvTailoredHistory")) || []; } catch { /* ignore */ }
-      const res = await fetch("/api/cv", {
+   const res = await fetch("https://cvforjob.org/api/cv", {
+  credentials: "include",
         method: "PUT", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ draft, history }),
       });

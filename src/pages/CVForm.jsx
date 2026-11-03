@@ -464,7 +464,7 @@ export default function CVForm() {
     } else {
       setIsReady(true);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [authLoading, user]);
 
   // Autosave on this device (keeps any job-tailoring extras already in the draft)

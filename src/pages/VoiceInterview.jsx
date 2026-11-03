@@ -498,8 +498,9 @@ Already collected for this step: ${contextData}
     let lastError = null;
     for (let attempt = 1; attempt <= 2; attempt++) {
       try {
-        const response = await fetch("/api/claude", {
-          method: "POST",
+      const response = await fetch("https://cvforjob.org/api/claude", {
+  method: "POST",
+  credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             system: systemPrompt,
@@ -678,8 +679,9 @@ JOB DESCRIPTION:
 ${jobDescriptionText}
 `.trim();
 
-      const response = await fetch("/api/claude", {
-        method: "POST",
+      const response = await fetch("https://cvforjob.org/api/claude", {
+  method: "POST",
+  credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           system: systemPrompt,

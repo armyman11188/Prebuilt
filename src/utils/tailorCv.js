@@ -42,7 +42,8 @@ JOB DESCRIPTION:
 ${jobDescription}
 `.trim();
 
-  const response = await fetch("/api/claude", {
+ const response = await fetch("https://cvforjob.org/api/claude", {
+  credentials: "include",
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ system: SYSTEM_PROMPT, messages: [{ role: "user", content: userMessage }], max_tokens: 1500 }),

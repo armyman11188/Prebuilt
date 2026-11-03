@@ -13,7 +13,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../firebase";
-
+const API_URL = "https://cvforjob.org";
 const AuthContext = createContext(null);
 
 // Firebase ke technical error codes -> insani zubaan
@@ -39,7 +39,8 @@ function friendly(err) {
 }
 
 async function createServerSession(idToken, phone) {
-  const res = await fetch("/api/auth/session", {
+  const res = await fetch(`${API_URL}/api/auth/session`, {
+	  credentials: "include",
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ idToken, phone }),
@@ -54,9 +55,11 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   // Page khulte hi: cookie valid hai?
-  useEffect(() => {
-    fetch("/api/auth/me")
-      .then((r) => (r.ok ? r.json() : null))
+useEffect(() => {
+  fetch(`${API_URL}/api/auth/me`, {
+    credentials: "include",
+  })
+    .then((r) => (r.ok ? r.json() : null))
       .then((d) => setUser(d?.user || null))
       .catch(() => setUser(null))
       .finally(() => setLoading(false));
@@ -94,8 +97,13 @@ export function AuthProvider({ children }) {
     }
   }
 
-  async function logout() {
-    try { await fetch("/api/auth/logout", { method: "POST" }); } catch { /* ignore */ }
+ async function logout() {
+  try {
+    await fetch(`${API_URL}/api/auth/logout`, {
+      method: "POST",
+      credentials: "include",
+    });
+  } catch { /* ignore */ }
     // Privacy: is browser mein is user ka data chhor ke mat jao
     ["cvFormDraft", "cvTailoredHistory", "atsCheckData", "atsMissingItems", "voiceInterviewData"].forEach((k) => localStorage.removeItem(k));
     setUser(null);
